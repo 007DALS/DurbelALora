@@ -18,11 +18,12 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-var app = builder.Build();
-
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 
 builder.Services.AddScoped<IPersonaService, PersonaService>();
+
+var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
