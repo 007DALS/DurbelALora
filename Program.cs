@@ -1,8 +1,14 @@
 using DurbelALora.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+              options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
