@@ -1,4 +1,7 @@
 using DurbelALora.Data;
+using DurbelALora.Repositories;
+using DurbelALora.Repository;
+using DurbelALora.Service;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +19,10 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();
+
+builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
+
+builder.Services.AddScoped<IPersonaService, PersonaService>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
