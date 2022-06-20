@@ -1,5 +1,6 @@
 ﻿using DurbelALora.Model;
 using DurbelALora.Repository;
+using DurbelALora.Shared;
 
 namespace DurbelALora.Service
 {
@@ -29,6 +30,20 @@ namespace DurbelALora.Service
         public async Task<Persona> GetById(int id)
         {
             return await _repository.GetById(id);
+        }
+
+        public async Task<PaginationShared<Persona>> GetPagination(int page = 1, int take = 10, string sParam = "")
+        {
+            try
+            {
+                var r =  await _repository.GetPagination(page, take, sParam);
+                return r;
+            }
+            catch (Exception ex)
+            {
+                var m = ex.Message;
+                return null;
+            }
         }
     }
 }

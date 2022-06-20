@@ -1,0 +1,24 @@
+﻿
+::deep ul, ::deep li {
+    list-style: none;
+    content: none;
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+}
+
+
+::deep li:before {
+    content: "⚠";
+    display: block;
+    padding-right: 1.9em;
+    float: left;
+    width: 1.2em;
+}
+
+::deep li {
+    color:#805f5f;
+}
+
+div.validation-message {
+    color: #805f5f;
+}

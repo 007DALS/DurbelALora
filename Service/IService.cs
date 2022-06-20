@@ -1,4 +1,5 @@
 ﻿using DurbelALora.Model;
+using DurbelALora.Shared;
 
 namespace DurbelALora.Service
 {
@@ -9,5 +10,7 @@ namespace DurbelALora.Service
         public Task<T> Add(T model);
         public Task<bool> Delete(int id);
     }
-    public interface IPersonaService : IService<Persona> { }
+    public interface IPersonaService : IService<Persona> {
+        public Task<PaginationShared<Persona>> GetPagination(int page = 1, int take = 10, string sParam = "");
+    }
 }
