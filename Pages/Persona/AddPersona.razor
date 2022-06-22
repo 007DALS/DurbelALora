@@ -27,7 +27,7 @@
                         
                     </center>
                     <ValidationSummary />
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" @onclick="() => g = !g" aria-label="Close"></button>
                 </div>
             }
 
@@ -37,7 +37,8 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <label for="Nombre" class="input-group-text">Nombre Completo:</label>
-                                <input form="Nombre" class="form-control" type="text" @bind="@obj.Nombre" />
+                                <input form="Nombre" class="form-control" type="text" @bind="@obj.Nombre" 
+                                     onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 32 && event.charCode <= 32) ||  (event.charCode >= 97 && event.charCode <= 122))"/>
                             </div>
                             <div >
                                 <ValidationMessage For="() => obj.Nombre"/>
@@ -62,8 +63,8 @@
             <div class="col-md-12">
                 <center>
                     <div class="form-group">
-                        <input type="button" class="btn btn-success" @onclick="@AddComp" value="Guardar" />
                         <input type="button" class="btn btn-primary" @onclick="@back" value="Volver" />
+                        <input type="button" class="btn btn-success" @onclick="@AddComp" value="Guardar" />
                     </div>
                 </center>
             </div>

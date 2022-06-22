@@ -6,16 +6,13 @@
 
 <div class="card">
     <div class="card-header">
-        <h4>Quieres Borrar a @obj.Nombre?</h4>
+        <h4>
+            Quieres Borrar a @obj.Nombre?
+            <input type="button" class="btn btn-danger" @onclick="@DeleteComp" value="Si" />
+            <input type="button" class="btn btn-primary" @onclick="@back" value="No" />
+        </h4>
     </div>
-    <center>
-        <div class="col-md-12">
-            <div class="form-group">
-                <input type="button" class="btn btn-danger" @onclick="@DeleteComp" value="Borrar" />
-                <input type="button" class="btn btn-primary" @onclick="@back" value="Volver" />
-            </div>
-        </div>
-    </center>
+
 </div>
 
 
@@ -24,15 +21,34 @@
     public string Id { get; set; }
     Persona obj = new Persona();
 
+    string error = "";
+
     protected override async Task OnInitializedAsync()
     {
+        try
+        {
         obj = await Task.Run(() => service.GetById(Convert.ToInt32(Id)));
+
+        }
+        catch (Exception x)
+        {
+
+            error = $"Error: {x.Message}";
+        }
     }
 
     protected async void DeleteComp()
     {
-        await service.Delete(obj.ID);
-        navigationManager.NavigateTo("/persona");
+        try
+        {
+            await service.Delete(obj.ID);
+            navigationManager.NavigateTo("/persona");
+        }
+        catch (Exception x)
+        {
+            error = $"Error: {x.Message}";
+        }
+
     }
 
     void back()
